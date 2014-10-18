@@ -1,0 +1,20 @@
+body {
+	background:#000;
+}
+
+#pageContent {
+	background:#000;
+	width:100%;
+	position:relative;
+}
+
+#main-menu button{
+	background:#0f0;
+	margin:5px 0px;
+	text-align:center;
+	padding:5px 0px;
+	width:100%;
+	border:none;
+	display:block;
+	
+}
