@@ -30,12 +30,12 @@ function handleLogin() {
 	                window.localStorage["username"] = u;
 	                window.localStorage["password"] = p;             
 	                //$.mobile.changePage("some.html");
-	               // navigator.notification.alert(
-			       //     'You are the winner!',  // message
-			       //     function(){},         // callback
-			      //      'Game Over',            // title
-			      //      'Done'                  // buttonName
-			     //   );
+	                navigator.notification.alert(
+			            'You are the winner!',  // message
+			            function(){},         // callback
+			            'Game Over',            // title
+			            'Done'                  // buttonName
+			        );
 			      $.ajax({
 			          url:"http://hacktm.mngwebs.com/ajax.php?action=draw_menu",
 			          }).done(function(res){
