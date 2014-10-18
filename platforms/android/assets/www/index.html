@@ -1,61 +1,54 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Compass Example</title>
 
+<head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Auth Demo</title>
+    <link rel="stylesheet" href="js/jquery.mobile/jquery.mobile-1.4.4.min.css" type="text/css" charset="utf-8" />
+    <script src="js/jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" src="js/jquery.mobile/jquery.mobile.theme-1.4.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/index.js"></script>
+</head>
 
-    // The watch id references the current `watchHeading`
-    var watchID = null;
+<body onload="init()">
+    
+<div id="loginPage" data-role="page">
 
-    // Wait for device API libraries to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
+    <div data-role="header">
+        <h1>Auth Demo</h1>
+    </div>
 
-    // device APIs are available
-    //
-    function onDeviceReady() {
-        startWatch();
-    }
+    <div data-role="content">    
 
-    // Start watching the compass
-    //
-    function startWatch() {
+        <form id="loginForm">
+        <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="" placeholder="Username" />
+        </div>
 
-        // Update compass every 3 seconds
-        var options = { frequency: 3000 };
+        <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="" placeholder="Password" />
+        </div>
 
-        watchID = navigator.compass.watchHeading(onSuccess, onError, options);
-    }
+        <input type="submit" value="Login" id="submitButton">
+        </form>
+        
+    </div>
 
-    // Stop watching the compass
-    //
-    function stopWatch() {
-        if (watchID) {
-            navigator.compass.clearWatch(watchID);
-            watchID = null;
-        }
-    }
+    <div data-role="footer">
+        <h4>&copy; Camden Enterprises</h4>
+    </div>
 
-    // onSuccess: Get the current heading
-    //
-    function onSuccess(heading) {
-        var element = document.getElementById('heading');
-        element.innerHTML = 'Heading: ' + heading.magneticHeading;
-    }
+</div>
 
-    // onError: Failed to get the heading
-    //
-    function onError(compassError) {
-        alert('Compass error: ' + compassError.code);
-    }
+<script>
+$("#loginPage").live("pageinit", function(e) {
+        checkPreAuth();
+    });
+</script>
 
-    </script>
-  </head>
-  <body>
-    <div id="heading">Waiting for heading...</div>
-    <button onclick="startWatch();">Start Watching</button>
-    <button onclick="stopWatch();">Stop Watching</button>
-  </body>
+</body>
 </html>
