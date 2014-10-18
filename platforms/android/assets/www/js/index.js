@@ -28,23 +28,11 @@ function handleLogin() {
 	            if(res == 'true') {
 	                //store
 	                window.localStorage["username"] = u;
-	                window.localStorage["password"] = p;             
-	                //$.mobile.changePage("some.html");
-	               // navigator.notification.alert(
-			       //     'You are the winner!',  // message
-			       //     function(){},         // callback
-			      //      'Game Over',            // title
-			      //      'Done'                  // buttonName
-			     //   );
-			      $.ajax({
-			          url:"http://hacktm.mngwebs.com/ajax.php?action=draw_menu",
-			          }).done(function(res){
-			          
-			          //$('#pageContent').html(res);
-			          document.getElementById("pageContent").innerHTML = res;
-			          });
+	                window.localStorage["password"] = p;
+	                //$('#pageContent').load('main-page.html');
+	                $.changeView('#pageContent', 'main-page');
 	            } else {
-	                navigator.notification.alert("Your login failed", function() {});
+	                navigator.notification.alert("Wrong login!", function() {});
 	            }
 	            $("#submitButton").removeAttr("disabled");
 	    }).fail(function(){
@@ -56,6 +44,10 @@ function handleLogin() {
         $("#submitButton").removeAttr("disabled");
     }
     return false;
+}
+
+$.changeView = function(container, page) {
+	$(container).load('views/'+page+'.html');
 }
 
 function deviceReady() {
