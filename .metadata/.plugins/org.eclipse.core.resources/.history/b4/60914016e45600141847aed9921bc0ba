@@ -25,6 +25,7 @@ function handleLogin() {
         	type: 'POST',
         	data: {username:u,password:p}
         	}).done(function(res) {
+        		console.log(res);
 	            if(res == 'true') {
 	                //store
 	                window.localStorage["username"] = u;

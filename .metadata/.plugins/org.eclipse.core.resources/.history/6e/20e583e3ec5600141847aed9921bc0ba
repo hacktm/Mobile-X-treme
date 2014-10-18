@@ -13,7 +13,6 @@
 </head>
 
 <body onload="init()">
-<div id="menu"></div>
 <div id="pageContent">   
 	<div id="loginPage" data-role="page">
 	

@@ -21,10 +21,11 @@ function handleLogin() {
     var p = $("#password", form).val();
     if(u != '' && p!= '') {
         $.ajax({
-        	url:"http://hacktm.mngwebs.com/ajax.php?action=login",
+        	url:"http://hacktm.mngwebs.com/ajax.php",
         	type: 'POST',
         	data: {username:u,password:p}
         	}).done(function(res) {
+        		console.log(res);
 	            if(res == 'true') {
 	                //store
 	                window.localStorage["username"] = u;

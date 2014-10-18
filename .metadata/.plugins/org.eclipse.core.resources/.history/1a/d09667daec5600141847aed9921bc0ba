@@ -13,8 +13,7 @@
 </head>
 
 <body onload="init()">
-<div id="menu"></div>
-<div id="pageContent">   
+<div id="paegContent">   
 	<div id="loginPage" data-role="page">
 	
 	    <div data-role="header">
