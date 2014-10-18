@@ -13,9 +13,7 @@
     <script type="text/javascript" src="js/jquery.mobile/jquery.mobile.theme-1.4.4.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/index.js"></script>
    <!-- <script src="http://10.0.186.100:8080/target/target-script-min.js#anonymous"></script>-->
-</head>
 
-<body onload="init()">
 <script type="text/javascript" charset="utf-8">
 
     // Wait for Cordova to load
@@ -25,16 +23,12 @@
     // Cordova is ready
     //
     function onDeviceReady() {
-    console.log('IULIAN: onDeviceReady');
-     var options = { enableHighAccuracy: true };
-        navigator.geolocation.getCurrentPosition(onSuccess, onError,options);
-    console.log('IULIAN2: am trecut de getcurretpos');
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
 
     // onSuccess Geolocation
     //
     function onSuccess(position) {
-     console.log('IULIAN: onSuccess');
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -49,13 +43,15 @@
     // onError Callback receives a PositionError object
     //
     function onError(error) {
-     console.log('IULIAN: onError');
     document.getElementById('geolocation').innerHTML = 'error:'+error.message;
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
 
     </script>
+</head>
+
+<body onload="init()">
 <div id="menu"></div>
 <div id="pageContent">   
 	<div id="loginPage" data-role="page">

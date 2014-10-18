@@ -26,9 +26,7 @@
     //
     function onDeviceReady() {
     console.log('IULIAN: onDeviceReady');
-     var options = { enableHighAccuracy: true };
-        navigator.geolocation.getCurrentPosition(onSuccess, onError,options);
-    console.log('IULIAN2: am trecut de getcurretpos');
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
 
     // onSuccess Geolocation
