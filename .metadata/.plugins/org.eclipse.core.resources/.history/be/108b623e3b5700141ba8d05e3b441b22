@@ -43,7 +43,7 @@
 			};
 	  	
 			var map = new google.maps.Map(document.getElementById('map-canvas'),  mapOptions);
-			refreshMap(map);
+			refreshMap();
 			
 		
 		}
@@ -100,11 +100,10 @@
 			data: { lat: latitude, lng: longitude,user: window.localStorage["userid"], rideId:window.rideId }
 		})
 		.done(function( markersJson ){
-			var markersJson = JSON.parse(markersJson);
-			if (markersJson.rideId > 0)
-				window.rideId = markersJson.rideId;
-			window.dataaa = markersJson.markers;
-		}).fail(function(){
+			markersJson = JSON.parse(markersJson);
+			if (markersJson["rideId"] > 0)
+				window.rideId = markersJson["rideId"];
+			window.dataaa = markersJson["markers"];
 		});
 	}
     
