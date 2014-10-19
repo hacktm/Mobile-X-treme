@@ -66,7 +66,8 @@ public class Notification extends CordovaPlugin {
      * @param callbackContext   The callback context used when calling back into JavaScript.
      * @return                  True when the action was valid, false otherwise.
      */
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    @Override
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     	/*
     	 * Don't run any of these if the current activity is finishing
     	 * in order to avoid android.view.WindowManager$BadTokenException
@@ -125,7 +126,8 @@ public class Notification extends CordovaPlugin {
      */
     public void beep(final long count) {
         cordova.getThreadPool().execute(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone);
 
@@ -158,7 +160,8 @@ public class Notification extends CordovaPlugin {
     	final CordovaInterface cordova = this.cordova;
 
         Runnable runnable = new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
 
                 AlertDialog.Builder dlg = createDialog(cordova); // new AlertDialog.Builder(cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
                 dlg.setMessage(message);
@@ -166,13 +169,15 @@ public class Notification extends CordovaPlugin {
                 dlg.setCancelable(true);
                 dlg.setPositiveButton(buttonLabel,
                         new AlertDialog.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                            @Override
+							public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
                             }
                         });
                 dlg.setOnCancelListener(new AlertDialog.OnCancelListener() {
-                    public void onCancel(DialogInterface dialog)
+                    @Override
+					public void onCancel(DialogInterface dialog)
                     {
                         dialog.dismiss();
                         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
@@ -199,7 +204,8 @@ public class Notification extends CordovaPlugin {
     	final CordovaInterface cordova = this.cordova;
 
         Runnable runnable = new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 AlertDialog.Builder dlg = createDialog(cordova); // new AlertDialog.Builder(cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
                 dlg.setMessage(message);
                 dlg.setTitle(title);
@@ -210,7 +216,8 @@ public class Notification extends CordovaPlugin {
                     try {
                         dlg.setNegativeButton(buttonLabels.getString(0),
                             new AlertDialog.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                                @Override
+								public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 1));
                                 }
@@ -223,7 +230,8 @@ public class Notification extends CordovaPlugin {
                     try {
                         dlg.setNeutralButton(buttonLabels.getString(1),
                             new AlertDialog.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                                @Override
+								public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 2));
                                 }
@@ -236,7 +244,8 @@ public class Notification extends CordovaPlugin {
                     try {
                         dlg.setPositiveButton(buttonLabels.getString(2),
                             new AlertDialog.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                                @Override
+								public void onClick(DialogInterface dialog, int which) {
                                   dialog.dismiss();
                                   callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 3));
                                 }
@@ -244,7 +253,8 @@ public class Notification extends CordovaPlugin {
                     } catch (JSONException e) { }
                 }
                 dlg.setOnCancelListener(new AlertDialog.OnCancelListener() {
-                    public void onCancel(DialogInterface dialog)
+                    @Override
+					public void onCancel(DialogInterface dialog)
                     {
                         dialog.dismiss();
                         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
@@ -274,7 +284,8 @@ public class Notification extends CordovaPlugin {
         final CordovaInterface cordova = this.cordova;
        
         Runnable runnable = new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 final EditText promptInput =  new EditText(cordova.getActivity());
                 promptInput.setHint(defaultText);
                 AlertDialog.Builder dlg = createDialog(cordova); // new AlertDialog.Builder(cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
@@ -291,7 +302,8 @@ public class Notification extends CordovaPlugin {
                     try {
                         dlg.setNegativeButton(buttonLabels.getString(0),
                             new AlertDialog.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                                @Override
+								public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     try {
                                         result.put("buttonIndex",1);
@@ -308,7 +320,8 @@ public class Notification extends CordovaPlugin {
                     try {
                         dlg.setNeutralButton(buttonLabels.getString(1),
                             new AlertDialog.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                                @Override
+								public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     try {
                                         result.put("buttonIndex",2);
@@ -325,7 +338,8 @@ public class Notification extends CordovaPlugin {
                     try {
                         dlg.setPositiveButton(buttonLabels.getString(2),
                             new AlertDialog.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                                @Override
+								public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     try {
                                         result.put("buttonIndex",3);
@@ -337,7 +351,8 @@ public class Notification extends CordovaPlugin {
                     } catch (JSONException e) { }
                 }
                 dlg.setOnCancelListener(new AlertDialog.OnCancelListener() {
-                    public void onCancel(DialogInterface dialog){
+                    @Override
+					public void onCancel(DialogInterface dialog){
                         dialog.dismiss();
                         try {
                             result.put("buttonIndex",0);
@@ -367,7 +382,8 @@ public class Notification extends CordovaPlugin {
         final Notification notification = this;
         final CordovaInterface cordova = this.cordova;
         Runnable runnable = new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 notification.spinnerDialog = createProgressDialog(cordova); // new ProgressDialog(cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
                 notification.spinnerDialog.setTitle(title);
                 notification.spinnerDialog.setMessage(message);
@@ -375,7 +391,8 @@ public class Notification extends CordovaPlugin {
                 notification.spinnerDialog.setIndeterminate(true);
                 notification.spinnerDialog.setOnCancelListener(
                         new DialogInterface.OnCancelListener() {
-                            public void onCancel(DialogInterface dialog) {
+                            @Override
+							public void onCancel(DialogInterface dialog) {
                                 notification.spinnerDialog = null;
                             }
                         });
@@ -409,7 +426,8 @@ public class Notification extends CordovaPlugin {
         final Notification notification = this;
         final CordovaInterface cordova = this.cordova;
         Runnable runnable = new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 notification.progressDialog = createProgressDialog(cordova); // new ProgressDialog(cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
                 notification.progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 notification.progressDialog.setTitle(title);
@@ -419,7 +437,8 @@ public class Notification extends CordovaPlugin {
                 notification.progressDialog.setProgress(0);
                 notification.progressDialog.setOnCancelListener(
                         new DialogInterface.OnCancelListener() {
-                            public void onCancel(DialogInterface dialog) {
+                            @Override
+							public void onCancel(DialogInterface dialog) {
                                 notification.progressDialog = null;
                             }
                         });

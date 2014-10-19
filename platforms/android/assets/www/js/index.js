@@ -25,10 +25,11 @@ function handleLogin() {
         	type: 'POST',
         	data: {username:u,password:p}
         	}).done(function(res) {
-	            if(res == 'true') {
+	            if(res != 'false') {
 	                //store
 	                window.localStorage["username"] = u;
 	                window.localStorage["password"] = p;
+	                window.localStorage["userid"] = res;
 	                //$('#pageContent').load('main-page.html');
 	                $.changeView('#pageContent', 'main-page');
 	            } else {
